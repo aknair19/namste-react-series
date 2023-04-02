@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-const name = "Abhishek";
+const fname = "Abhishek";
 
 const HeaderComponent = () => (
   <>
-    <h1>Namste {name}</h1>
+    <h1>Hola {fname}</h1>
   </>
 );
 
