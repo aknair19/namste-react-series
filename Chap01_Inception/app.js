@@ -5,7 +5,7 @@ const name = "Abhishek";
 
 const HeaderComponent = () => (
   <>
-    <h1>Helllo {name}</h1>
+    <h1>Namste {name}</h1>
   </>
 );
 
