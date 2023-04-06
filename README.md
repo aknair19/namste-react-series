@@ -19,3 +19,17 @@ NAMASTE REACT SERIES
 - HTTP's
 - Tree Shaking - remove unsued code
 - Diff. production and dev bundles
+
+App Wireframe
+
+- Header
+- -logo
+- -nav items
+- Body
+- -Search
+- -Restaurant container
+- -Restaurant card
+- Footer
+- -Copyright
+- -links
+- -Address

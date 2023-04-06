@@ -1,14 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import "../Chap01_Inception/app.css";
+import cardData from "./src/utils/dummyData";
+import Header from "./src/components/Header";
 
-const fname = "Abhishek";
-
-const HeaderComponent = () => (
-  <>
-    <h1>Hola {fname}</h1>
-  </>
-);
+import Body from "./src/components/Body";
+const AppLayout = () => {
+  return (
+    <div className="container">
+      <Header />
+      <Body cardData={cardData} />
+    </div>
+  );
+};
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-// console.log(parent); // create element creates an object aka react element
-root.render(<HeaderComponent />); //render method is coverting an object into the tag and replaces if anything is inside root id
+root.render(<AppLayout />);
