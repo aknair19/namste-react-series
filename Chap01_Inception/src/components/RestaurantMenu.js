@@ -31,14 +31,3 @@ const RestaurantMenu = () => {
 };
 
 export default RestaurantMenu;
-//
-
-
-
-
-
-
-
-https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6394617&lng=77.0645588&page_type=DESKTOP_WEB_LISTING
-
-https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.6394617&lng=77.0645588&restaurantId=20539&submitAction=ENTER
