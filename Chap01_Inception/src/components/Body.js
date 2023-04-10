@@ -58,15 +58,13 @@ const Body = () => {
       </button>
 
       {filteredRestaurantList.map((card) => (
-        <div>
-          <Link
-            to={"/restaurants/" + card.data.id}
-            key={card.data.id}
-            className="restaurant-container"
-          >
-            <RestaurantContainer cardData={card} />
-          </Link>
-        </div>
+        <Link
+          to={"/restaurants/" + card.data.id}
+          key={card.data.id}
+          className="restaurant-container"
+        >
+          <RestaurantContainer cardData={card} />
+        </Link>
       ))}
     </div>
   );

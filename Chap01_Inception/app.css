@@ -100,3 +100,9 @@
     gap: 5em;
     padding-left: 2em;
 }
+
+.restaurant-menu-page {
+    display: flex;
+    padding: 2em;
+    gap: 2em;
+}
