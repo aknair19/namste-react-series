@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import RestaurantContainer from "./RestaurantContainer";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 const Body = () => {
   /*diff ways of writing hooks(array destructuring)
      const [list, setList] = arr;
@@ -16,9 +17,11 @@ const Body = () => {
       const response = await fetch(
         "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6394617&lng=77.0645588&page_type=DESKTOP_WEB_LISTING"
       );
+
       const json = await response.json();
       //optional chaining
       const data = json?.data?.cards[2]?.data?.data?.cards;
+      console.log(data);
       setRestaurantList(data);
       setFilteredRestaurantList(data);
     } catch (error) {
@@ -53,11 +56,18 @@ const Body = () => {
       <button className="filter-btn" onClick={filterDataOnClick}>
         Search
       </button>
-      <div className="restaurant-container">
-        {filteredRestaurantList.map((card) => (
-          <RestaurantContainer cardData={card} key={card.data.id} />
-        ))}
-      </div>
+
+      {filteredRestaurantList.map((card) => (
+        <div>
+          <Link
+            to={"/restaurants/" + card.data.id}
+            key={card.data.id}
+            className="restaurant-container"
+          >
+            <RestaurantContainer cardData={card} />
+          </Link>
+        </div>
+      ))}
     </div>
   );
 };
