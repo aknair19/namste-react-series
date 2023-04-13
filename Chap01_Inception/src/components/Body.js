@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import RestaurantContainer from "./RestaurantContainer";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import { filterDataOnClick } from "../utils/helper";
+import { FETCH_RESTAURANT } from "../utils/constant";
+import useOnline from "../utils/useOnline";
 const Body = () => {
   /*diff ways of writing hooks(array destructuring)
      const [list, setList] = arr;
@@ -14,9 +17,7 @@ const Body = () => {
   const [searchText, setSearchText] = useState("");
   const getRestaurants = async () => {
     try {
-      const response = await fetch(
-        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6394617&lng=77.0645588&page_type=DESKTOP_WEB_LISTING"
-      );
+      const response = await fetch(FETCH_RESTAURANT);
 
       const json = await response.json();
       //optional chaining
@@ -35,14 +36,14 @@ const Body = () => {
     console.log("use effect called");
   }, []);
 
-  const filterDataOnClick = () => {
-    const data = restaurantList.filter((card) =>
-      card?.data?.name?.toLowerCase()?.includes(searchText.toLowerCase())
-    );
+  const isOnline = useOnline();
+  console.log(isOnline);
 
-    setFilteredRestaurantList(data);
-  };
-  return filteredRestaurantList.length === 0 ? (
+  if (!isOnline) {
+    return <h1>🔴 Offline,Please check your internet connection </h1>;
+  }
+
+  return restaurantList.length === 0 ? (
     <Shimmer />
   ) : (
     <div>
@@ -53,7 +54,13 @@ const Body = () => {
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
       />
-      <button className="filter-btn" onClick={filterDataOnClick}>
+      <button
+        className="filter-btn"
+        onClick={() => {
+          const data = filterDataOnClick(restaurantList, searchText);
+          setFilteredRestaurantList(data);
+        }}
+      >
         Search
       </button>
 

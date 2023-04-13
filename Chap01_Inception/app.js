@@ -1,16 +1,19 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import "../Chap01_Inception/app.css";
 import cardData from "./src/utils/dummyData";
 import Header from "./src/components/Header";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Body from "./src/components/Body";
-import About2 from "./src/components/About";
+import About from "./src/components/About";
 import NotFoundPage from "./src/components/NotFoundPage";
 import Footer from "./src/components/Footer";
 import Contact from "./src/components/Contact";
 import RestaurantMenu from "./src/components/RestaurantMenu";
 import Profile from "./src/components/ProfileClass";
+import Shimmer from "./src/components/Shimmer";
+// import Mart from "./src/components/Mart";
+const Mart = lazy(() => import("./src/components/Mart"));
 const AppLayout = () => {
   return (
     <div className="container">
@@ -20,6 +23,7 @@ const AppLayout = () => {
     </div>
   );
 };
+
 const appRouter = createBrowserRouter([
   {
     path: "/",
@@ -32,7 +36,7 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/about",
-        element: <About2 />,
+        element: <About />,
         children: [
           {
             path: "profile",
@@ -47,6 +51,14 @@ const appRouter = createBrowserRouter([
       {
         path: "/restaurants/:resId",
         element: <RestaurantMenu />,
+      },
+      {
+        path: "/instamart",
+        element: (
+          <Suspense fallback={<Shimmer />}>
+            <Mart />,
+          </Suspense>
+        ),
       },
     ],
   },
