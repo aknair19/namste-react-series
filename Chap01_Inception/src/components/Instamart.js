@@ -1,6 +1,6 @@
 import React from "react";
 
-const Mart = () => {
+const Instamart = () => {
   return (
     <div>
       <h1>Welcome to instamart</h1>
@@ -9,4 +9,4 @@ const Mart = () => {
   );
 };
 
-export default Mart;
+export default Instamart;

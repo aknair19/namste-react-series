@@ -1,16 +1,17 @@
 import { IMG_URL } from "../utils/constant";
-const RestaurantContainer = ({ cardData }) => {
+const RestaurantContainer = ({ cardData ,word}) => {
   const { cloudinaryImageId, name, cuisines, avgRating, deliveryTime } =
     cardData.data;
 
   return (
-    <div className="restaurant-card">
-      <img className="res-image" src={`${IMG_URL}/${cloudinaryImageId}`} />
-      <div className="res-body">
-        <h3>{name}</h3>
-        <div className="res-head">
-          <p>{cuisines.join(", ")}</p>
+    <div className=" container  flex flex-col  w-fit max-w-sm  ">
+      <img className="w-30 h-30 " src={`${IMG_URL}/${cloudinaryImageId}`} />
+      <div>
+        <h3 className="font-bold">{name}</h3>
+        <div>
+          <p className="">{cuisines.join(", ")}</p>
           <p>{avgRating}</p>
+          <p>{word}</p>
         </div>
       </div>
     </div>

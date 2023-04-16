@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { filterDataOnClick } from "../utils/helper";
 import { FETCH_RESTAURANT } from "../utils/constant";
 import useOnline from "../utils/useOnline";
-const Body = () => {
+const Body = ({word}) => {
   /*diff ways of writing hooks(array destructuring)
      const [list, setList] = arr;
   const list = arr[0];
@@ -46,33 +46,31 @@ const Body = () => {
   return restaurantList.length === 0 ? (
     <Shimmer />
   ) : (
-    <div>
+    <div className="flex flex-col justify-center items-center m-3 space-y-6">
+      <div>
       <input
-        className="search"
+      className="border border-blue-950"
         type="text"
-        placeholder="search"
+       
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
       />
-      <button
-        className="filter-btn"
+      <button className="border border-black bg-yellow-300"
         onClick={() => {
           const data = filterDataOnClick(restaurantList, searchText);
           setFilteredRestaurantList(data);
         }}
       >
-        Search
+        Search 
       </button>
-
-      {filteredRestaurantList.map((card) => (
-        <Link
-          to={"/restaurants/" + card.data.id}
-          key={card.data.id}
-          className="restaurant-container"
-        >
-          <RestaurantContainer cardData={card} />
-        </Link>
-      ))}
+      </div>
+      <div className="flex  justify-center items-baseline flex-wrap space-x-4 space-y-5">
+        {filteredRestaurantList.map((card) => (
+          <Link to={"/restaurants/" + card.data.id} key={card.data.id}>
+            <RestaurantContainer cardData={card} word={word}/>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 };

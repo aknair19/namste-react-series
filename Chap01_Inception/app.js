@@ -1,6 +1,7 @@
-import React, { lazy, Suspense } from "react";
+import React, { useState, lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import "../Chap01_Inception/app.css";
+import "../Chap01_Inception/index.css";
 import cardData from "./src/utils/dummyData";
 import Header from "./src/components/Header";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
@@ -12,13 +13,14 @@ import Contact from "./src/components/Contact";
 import RestaurantMenu from "./src/components/RestaurantMenu";
 import Profile from "./src/components/ProfileClass";
 import Shimmer from "./src/components/Shimmer";
-// import Mart from "./src/components/Mart";
-const Mart = lazy(() => import("./src/components/Mart"));
+// import Mart from "./src/components/Instamart";
+const Instamart = lazy(() => import("./src/components/Instamart"));
 const AppLayout = () => {
+  // const [word, setWord] = useState("namaste");
   return (
-    <div className="container">
+    <div>
       <Header />
-      <Outlet />
+      <Outlet  />
       <Footer />
     </div>
   );
@@ -32,7 +34,7 @@ const appRouter = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Body />,
+        element: <Body word={'namaste'} />,
       },
       {
         path: "/about",
@@ -56,7 +58,7 @@ const appRouter = createBrowserRouter([
         path: "/instamart",
         element: (
           <Suspense fallback={<Shimmer />}>
-            <Mart />,
+            <Instamart />,
           </Suspense>
         ),
       },

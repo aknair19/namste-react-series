@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import useOnline from "../utils/useOnline";
+import Logo from '../assets/storyblocks-icon.svg'
 const loggedInUser = () => {
   return true;
 };
@@ -9,37 +10,38 @@ const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const isOnline = useOnline();
   return (
-    <div className="header">
-      <div className="logo">
+    <div className="flex justify-between items-center m-2 ">
+      <div>
         <img
-          className="logo"
-          src="https://w7.pngwing.com/pngs/126/52/png-transparent-logo-brand-font-food-product-restaurant-logo-design-food-label-text-thumbnail.png"
+          className="h-10 w-18 "
+          src={Logo}
           alt="logo"
         />
       </div>
-      <div className="nav-items">
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/contact">Contact us</Link>
-          </li>
-          <li>Cart</li>
-          <li>
-            <Link to="/instamart">Instamart</Link>
-          </li>
-        </ul>
+
+      <ul className=" flex space-x-6 ">
+        <li className="font-bold">
+          <Link to="/">Home</Link>
+        </li>
+        <li className="font-bold">
+          <Link to="/about">About</Link>
+        </li>
+        <li className="font-bold">
+          <Link to="/contact">Contact us</Link>
+        </li>
+        <li className="font-bold">Cart</li>
+        <li>
+          <Link className="font-bold" to="/instamart">Instamart</Link>
+        </li>
+      </ul>
+      <div>
+        {isOnline ? "✅" : "🔴"}
+        {isLoggedIn ? (
+          <button onClick={() => setIsLoggedIn(false)}>Logout</button>
+        ) : (
+          <button onClick={() => setIsLoggedIn(true)}>Login</button>
+        )}
       </div>
-      {isOnline ? "✅" : "🔴"}
-      {isLoggedIn ? (
-        <button onClick={() => setIsLoggedIn(false)}>Logout</button>
-      ) : (
-        <button onClick={() => setIsLoggedIn(true)}>Login</button>
-      )}
     </div>
   );
 };
